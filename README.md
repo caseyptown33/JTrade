@@ -1,84 +1,80 @@
-AutoTrade Bot on Free VPS
+🚀 AutoTrade Bot on Free VPS
 
-Introduction
+A bot that listens for whale swap transactions and automatically buys tokens before selling them at a higher price. It runs on a free VPS and supports Binance Smart Chain (BSC) using PancakeSwap.
 
-This AutoTrade bot listens for whale swap transactions on the Binance Smart Chain (BSC) and executes trades automatically. The bot aims to buy tokens before a price surge and sell them at a higher price for profit.
+📌 How It Works
 
-How It Works
+✅The bot continuously monitors swap transactions on the blockchain.
 
-The bot continuously monitors BSC transactions, specifically swap transactions on PancakeSwap.
+✅When a whale (large trader) swaps tokens exceeding a predefined USD amount, the bot quickly buys the token.
 
-When a whale transaction exceeds a defined threshold (e.g., $50,000 USD), the bot identifies the token being purchased.
+✅The bot waits for a price increase and sells at a target profit or cuts losses using stop-loss.
 
-If the token meets predefined conditions, the bot automatically buys a specified amount.
+✅Transactions are executed using PancakeSwap's Router contract.
 
-The bot monitors the token price and sells when the profit target is reached or exits when the stop-loss threshold is hit.
+📋 Installation Guide
 
-Installation Guide
+1️⃣ Install Python
 
-1. Install Python
+Ensure Python is installed on your VPS. If not, install it:
 
-Ensure you have Python installed on your system. You can download it from Python's official website.
+sudo apt update && sudo apt install python3 python3-pip -y
 
-2. Install Required Dependencies
-
-Run the following command to install necessary libraries:
+2️⃣ Install Required Dependencies
 
 pip install web3 python-dotenv requests
 
-3. Configure the .env File
+3️⃣ Configure Your .env File
 
-The bot uses a .env file for storing private credentials and trading parameters. The file should be in the root directory of the bot.
-
-Example .env Configuration:
+Create a .env file in the same directory as the bot and edit it with your credentials:
 
 SC_NODE_URL=https://bsc-dataseed.binance.org/
 PRIVATE_KEY=YOUR_METAMASK_PRIVATE_KEY
 WALLET_ADDRESS=YOUR_METAMASK_WALLET_ADDRESS
-PANCAKE_ROUTER=0x10ED43C718714eb63d5aA57B78B54704E256024E # PancakeSwap Router Address
-AMOUNT_TO_BUY=0.05  # Amount of BNB to use for each trade
-MIN_TX_AMOUNT=50000  # Minimum whale transaction value in USD to trigger the bot
-SLIPPAGE=5  # Slippage percentage (e.g., 5%)
-PROFIT_TARGET=5  # Profit-taking percentage (e.g., sell at 105% of buy price)
-STOP_LOSS=5  # Stop-loss percentage (e.g., exit if price drops to 95%)
+PANCAKE_ROUTER=0x10ED43C718714eb63d5aA57B78B54704E256024E
+AMOUNT_TO_BUY=0.05  # Amount of BNB to spend per trade
+MIN_TX_AMOUNT=50000  # Minimum whale transaction value in USD
+SLIPPAGE=5  # Maximum price slippage (in %)
+PROFIT_TARGET=5  # Sell when profit reaches 5%
+STOP_LOSS=5  # Sell if the price drops 5%
 
-4. Explanation of .env Parameters:
+🔍 Explanation of .env File
 
-SC_NODE_URL: BSC node URL (default: Binance RPC)
+SC_NODE_URL: The blockchain node to connect to.
 
-PRIVATE_KEY: Your MetaMask private key (⚠️ Keep this secure, never share it!)
+PRIVATE_KEY: Your MetaMask private key (⚠️ Keep this secret!).
 
-WALLET_ADDRESS: Your public wallet address (used for transactions)
+WALLET_ADDRESS: Your MetaMask wallet address.
 
-PANCAKE_ROUTER: PancakeSwap's router contract address (used for executing swaps)
+PANCAKE_ROUTER: The PancakeSwap router address for swapping.
 
-AMOUNT_TO_BUY: Amount of BNB used for each trade
+AMOUNT_TO_BUY: The amount of BNB to use per trade.
 
-MIN_TX_AMOUNT: The minimum whale transaction value in USD to trigger a trade
+MIN_TX_AMOUNT: The minimum transaction value (in USD) for tracking whales.
 
-SLIPPAGE: Allowed slippage percentage to prevent failed trades
+SLIPPAGE: The allowed slippage in percentage.
 
-PROFIT_TARGET: The percentage at which the bot sells to secure profits
+PROFIT_TARGET: The percentage gain at which to sell.
 
-STOP_LOSS: The percentage at which the bot exits a position to limit losses
+STOP_LOSS: The percentage loss at which to sell.
 
-5. Running the Bot
+▶️ Run the Bot
 
-Once configured, run the bot with:
+After setting up, start the bot with:
 
-python run.py
+python JTrade.py
 
-6. Testing with a Small Amount
+⚠️ Important Notes
 
-To ensure the bot works correctly, start by setting AMOUNT_TO_BUY=0.1 BNB and monitoring its behavior before increasing the investment amount.
+Test with a small amount first (e.g., 0.1 BNB + gas fees).
 
-Final Notes
+Use a secure VPS to protect your private key.
 
-Always test with a small amount before increasing trade volume.
+This bot does not guarantee profits. Trade at your own risk.
 
-The bot requires a small amount of BNB for gas fees.
+🎯 Conclusion
 
-Use at your own risk; trading involves financial risks.
+This bot automates trading based on whale transactions, aiming to take advantage of price spikes. Adjust the .env settings according to your risk tolerance and trading strategy.
 
-🚀 Happy Trading! 🚀
+🚀 Happy Trading!
 
